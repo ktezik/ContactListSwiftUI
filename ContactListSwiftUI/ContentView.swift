@@ -15,11 +15,12 @@ struct ContentView: View {
             ContactsView(persons: persons)
                 .tabItem {
                     Image(systemName: "person")
-                    
+                    Text("Contacts")
                 }
-            ContactAnotherView()
+            ContactAnotherView(persons: persons)
                 .tabItem {
-                    Image(systemName: "person.circle")
+                    Image(systemName: "phone.fill")
+                    Text("Numbers")
                 }
         }
     }

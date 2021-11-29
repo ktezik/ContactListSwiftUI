@@ -13,10 +13,9 @@ struct ContactsView: View {
     var body: some View {
         NavigationView {
             List(persons, id: \.self) { person in
-                NavigationLink(destination: ContactInformationView(boardName: "\(person.fullName())", person: person)) {
-                    Text("\(person.fullName())")
-                }
+                NavigationLink(person.fullName(), destination: ContactInformationView(person: person))
             }
+            .listStyle(.automatic)
             .navigationTitle("Contacts")
         }
     }

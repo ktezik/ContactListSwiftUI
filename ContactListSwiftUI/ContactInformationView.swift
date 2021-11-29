@@ -8,37 +8,28 @@
 import SwiftUI
 
 struct ContactInformationView: View {
-    let boardName: String
     let person: Person
     
     var body: some View {
-        VStack {
-            Image(systemName: "person")
-                .resizable()
-                .frame(width: 300, height: 300)
+        Form {
             HStack {
-                Image(systemName: "envelope.fill")
-                Text("\(person.email)")
                 Spacer()
-            } .padding()
-            HStack {
-                Image(systemName: "phone.fill")
-                Text("\(person.phoneNumber)")
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .padding()
                 Spacer()
-            } .padding(.leading)
-            Spacer()
-        } .padding()
-            .navigationTitle(boardName)
+            }
+            
+            Label(person.phoneNumber, systemImage: "phone")
+            Label(person.email, systemImage: "tray")
+        }
+        .navigationTitle(person.fullName())
     }
 }
 
 struct ContactInformationView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactInformationView(boardName: "Ivan Grishin", person: Person.init(
-            name: "Ivan",
-            surname: "Grishin",
-            phoneNumber: "555-55-55",
-            email: "ktez@ktez.ru")
-        )
+        ContactInformationView(person: Person.getPerson().first!)
     }
 }

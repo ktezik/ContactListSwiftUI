@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct ContactAnotherView: View {
+    let persons: [Person]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List(persons, id: \.self) { person in
+                Section(header: Text(person.fullName()).font(.headline)) {
+                    Label(person.phoneNumber, systemImage: "phone")
+                    Label(person.email, systemImage: "tray")
+                }
+            }
+            .navigationTitle("Contact List")
+        }
     }
 }
 
 struct ContactAnotherView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactAnotherView()
+        ContactAnotherView(persons: Person.getPerson())
     }
 }
